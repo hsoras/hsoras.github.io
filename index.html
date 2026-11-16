@@ -5,11 +5,12 @@
 <meta name="theme-color" content="#f5f3ec"><meta name="description" content="Sarosh — finding weird behaviors in agents. Experiments in agent trust, promises, and cooperation.">
 <title>Sarosh — Finding weird behaviors in agents</title>
 <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml"><link rel="stylesheet" href="style.css">
+<script>try{var t=localStorage.getItem("theme");if(!t&&matchMedia("(prefers-color-scheme:dark)").matches)t="dark";if(t==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
-<header><a class="wordmark" href="./" aria-label="Sarosh, home">sarosh</a><a class="text-link" href="https://github.com/hsoras">GitHub <span aria-hidden="true">↗</span></a></header>
+<header><a class="wordmark" href="./" aria-label="Sarosh, home">sarosh</a><div class="header-actions"><a class="text-link" href="https://github.com/hsoras">GitHub <span aria-hidden="true">↗</span></a><button class="theme-toggle" type="button" aria-label="Toggle dark mode">◐</button></div></header>
 <main id="main">
 <section class="intro" aria-labelledby="title">
 <p class="eyebrow"><span class="dot" aria-hidden="true"></span>CURRENT FOCUS</p>
@@ -33,5 +34,6 @@
 </main>
 <footer><span>Sarosh / hsoras</span><a class="text-link" href="https://github.com/hsoras">Find me on GitHub <span aria-hidden="true">↗</span></a></footer>
 </div>
+<script>document.querySelector(".theme-toggle").addEventListener("click",function(){var d=document.documentElement,n=d.dataset.theme==="dark"?"light":"dark";if(n==="dark")d.dataset.theme="dark";else delete d.dataset.theme;try{localStorage.setItem("theme",n)}catch(e){}})</script>
 </body>
 </html>
