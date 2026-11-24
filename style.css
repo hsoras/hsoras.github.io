@@ -13,4 +13,4 @@
 .decision-diagram{width:100%;max-width:260px;height:140px;flex-shrink:1;min-height:0}
 
 /* Current featured project. */
-.pool-art{background:var(--art-green);color:var(--pool-ink)}.pool-diagram{width:100%;max-width:260px;height:140px}.featured-project h3 a{display:flex;justify-content:space-between;gap:14px;width:100%}.project-links{display:flex;gap:24px;flex-wrap:wrap}.project-art:focus-visible{outline-offset:4px}.intro h1{max-width:880px}
+.pool-art{background:var(--art-green);color:var(--pool-ink)}.pool-diagram{width:100%;max-width:260px;height:160px}.featured-project h3 a{display:flex;justify-content:space-between;gap:14px;width:100%}.project-links{display:flex;gap:24px;flex-wrap:wrap}.project-art:focus-visible{outline-offset:4px}.intro h1{max-width:880px}
