@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Experiments in agent trust, promises, and cooperation."><meta property="og:type" content="article">
+<meta property="og:title" content="Whole-game counts: no-end-vote board comparison (Opus 5.5, Sol 6.1) — Sarosh Thalappil">
+<meta property="og:url" content="https://hsoras.github.io/writing/honor-among-agents/support/no-vote-whole-game-counts.html"><meta property="og:image" content="https://hsoras.github.io/assets/honor-among-agents/blog-sol-opus-examples.png">
+<title>Whole-game counts: no-end-vote board comparison (Opus 5.5, Sol 6.1) — Sarosh Thalappil</title><link rel="canonical" href="https://hsoras.github.io/writing/honor-among-agents/support/no-vote-whole-game-counts.html">
+<link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/blog.css"><link rel="stylesheet" href="/honor-article.css">
+<style>.honor-article .portrait-figure{max-width:560px;margin-left:auto;margin-right:auto}.prose li{margin-bottom:12px}.prose img{max-width:100%}.honor-article .article-table table{min-width:0}.reading-sidebar ul ul{margin:0}.prose h2{text-wrap:balance}</style>
+<script>try{var t=localStorage.getItem("theme");if(!t&&matchMedia("(prefers-color-scheme:dark)").matches)t="dark";if(t==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
+</head><body><a class="skip" href="#main">Skip to content</a><div class="page article-page honor-article">
+<header><a class="wordmark" href="/" aria-label="Sarosh, home">sarosh</a><div class="header-actions"><a class="text-link" href="https://github.com/hsoras">GitHub</a><button class="theme-toggle" type="button" aria-label="Toggle dark mode">◐</button></div></header>
+<main id="main"><div class="article-header"><a class="back-link" href="/writing/honor-among-agents.html">Back to the blog</a>
+<p class="eyebrow">AGENT BEHAVIOR / SWARM ALIGNMENT</p><h1>Whole-game counts: no-end-vote board comparison (Opus 5.5, Sol 6.1)</h1>
+
+<div class="article-meta"><span>Sarosh Thalappil</span><span>November 2026</span><span>7 min read</span></div></div>
+<details class="reading-menu"><summary>In this post</summary><nav aria-label="Table of contents"><ul><li class="level-2"><a href="#definitions">Definitions</a></li><li class="level-2"><a href="#per-cell-counts-20-games-each">Per-cell counts (20 games each)</a></li><li class="level-2"><a href="#mean-final-points-by-fixed-agent-position">Mean final points by fixed agent position</a></li><li class="level-2"><a href="#final-group-total-distribution-games-per-total">Final group total distribution (games per total)</a></li><li class="level-2"><a href="#pooled-funds-players-per-game-and-reference-measures">Pooled-funds players per game and reference measures</a></li><li class="level-2"><a href="#exceptional-games-all-players-count-differs-from-pooled-funds-count">Exceptional games: all-players count differs from pooled-funds count</a></li><li class="level-2"><a href="#direct-incoming-vs-origin-traced-disagreements">Direct-incoming vs origin-traced disagreements</a></li><li class="level-2"><a href="#checks">Checks</a></li><li class="level-2"><a href="#caveats">Caveats</a></li></ul></nav></details>
+<div class="reading-layout"><nav class="reading-sidebar" aria-label="Table of contents"><p>In this post</p><ul><li class="level-2"><a href="#definitions">Definitions</a></li><li class="level-2"><a href="#per-cell-counts-20-games-each">Per-cell counts (20 games each)</a></li><li class="level-2"><a href="#mean-final-points-by-fixed-agent-position">Mean final points by fixed agent position</a></li><li class="level-2"><a href="#final-group-total-distribution-games-per-total">Final group total distribution (games per total)</a></li><li class="level-2"><a href="#pooled-funds-players-per-game-and-reference-measures">Pooled-funds players per game and reference measures</a></li><li class="level-2"><a href="#exceptional-games-all-players-count-differs-from-pooled-funds-count">Exceptional games: all-players count differs from pooled-funds count</a></li><li class="level-2"><a href="#direct-incoming-vs-origin-traced-disagreements">Direct-incoming vs origin-traced disagreements</a></li><li class="level-2"><a href="#checks">Checks</a></li><li class="level-2"><a href="#caveats">Caveats</a></li></ul></nav><article class="prose">
+<p>Research output for the no-vote section. Read-only: no article, figure, plot, report, or data file changed; no API calls. Whole-game denominators only: all 20 games per cell, no first-win or pooled denominator.</p>
+<ul>
+<li>Script: <code>output/analysis/peer-reactions/no_vote_whole_game_counts.py</code> (run from the repo root with <code>python3 output/analysis/peer-reactions/no_vote_whole_game_counts.py</code>)</li>
+<li>Machine-readable: <code>output/analysis/peer-reactions/no-vote-whole-game-counts.json</code> (<code>cells</code>, per-game records, exceptions, checks, sources)</li>
+<li>Cohort: <code>writeup_data.load()</code> primary rows, variant <code>main</code> (with end vote) and <code>novote</code> (without end vote), condition <code>board</code>, Opus 5.5 and Sol 6.1, reps 0-19. All 80 games have status <code>completed</code>. All are original-harness rows (not retry-patched).</li>
+</ul>
+<h2 id="definitions" tabindex="-1">Definitions</h2>
+<ul>
+<li><strong>Gamble count per agent:</strong> number of distinct agents with a <code>play</code> event in the game (0-4). Each agent plays at most once per game (verified in all 80 games).</li>
+<li><strong>Total plays / wins:</strong> all <code>play</code> events and those with <code>won = True</code>. Replay matches the cached summary <code>plays</code> and <code>wins</code> in every game.</li>
+<li><strong>Final points:</strong> replayed balances, checked against <code>summary.final_balances</code>. Agent position is fixed (<code>agent_1</code> to <code>agent_4</code>).</li>
+<li><strong>Surviving:</strong> group total above 0. <strong>All-zero:</strong> group total 0. <strong>Sole holder:</strong> exactly one agent above 0. <strong>Multiple holders:</strong> two or more agents above 0. <strong>All four profited:</strong> every agent above 1 (start is 1 point).</li>
+<li><strong>Pooled-funds play (primary pooled measure):</strong> a play whose stake includes points that originated with another agent, using the proportional origin bookkeeping of <code>pool_origins.py</code>. Solo plays and plays from the actor's own starting point do not count. This is a funds label, not a claim about intent or promises.</li>
+<li><strong>Reference measures:</strong> direct incoming (the actor had received at least one transfer from another agent before its play) and the cached <code>pooled_plays</code> definition in <code>analyze_v2.metrics</code> (stake of 4 or more, the full-pool stake). Neither is the primary metric.</li>
+</ul>
+<h2 id="per-cell-counts-20-games-each" tabindex="-1">Per-cell counts (20 games each)</h2>
+<div class="article-table" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Condition</th>
+<th>Gamble count 0 / 1 / 2 / 3 / 4 agents</th>
+<th>Total plays</th>
+<th>Total wins</th>
+<th>Mean group final</th>
+<th>All-zero</th>
+<th>Surviving</th>
+<th>Sole holder</th>
+<th>2+ holders</th>
+<th>All four &gt;1</th>
+<th>Pooled-funds games</th>
+<th>Pooled-funds player slots</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Opus 5.5</td>
+<td>with_vote</td>
+<td>3 / 2 / 0 / 2 / 13</td>
+<td>60</td>
+<td>55</td>
+<td>38.6</td>
+<td>4</td>
+<td>16</td>
+<td>0</td>
+<td>16</td>
+<td>12</td>
+<td>17</td>
+<td>60</td>
+</tr>
+<tr>
+<td>Sol 6.1</td>
+<td>with_vote</td>
+<td>0 / 14 / 6 / 0 / 0</td>
+<td>26</td>
+<td>21</td>
+<td>7.95</td>
+<td>4</td>
+<td>16</td>
+<td>15</td>
+<td>1</td>
+<td>0</td>
+<td>20</td>
+<td>26</td>
+</tr>
+<tr>
+<td>Opus 5.5</td>
+<td>without_vote</td>
+<td>1 / 4 / 0 / 1 / 14</td>
+<td>63</td>
+<td>57</td>
+<td>41.8</td>
+<td>6</td>
+<td>14</td>
+<td>0</td>
+<td>14</td>
+<td>13</td>
+<td>19</td>
+<td>63</td>
+</tr>
+<tr>
+<td>Sol 6.1</td>
+<td>without_vote</td>
+<td>0 / 10 / 5 / 3 / 2</td>
+<td>37</td>
+<td>31</td>
+<td>12.7</td>
+<td>4</td>
+<td>16</td>
+<td>14</td>
+<td>2</td>
+<td>0</td>
+<td>20</td>
+<td>37</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="mean-final-points-by-fixed-agent-position" tabindex="-1">Mean final points by fixed agent position</h2>
+<div class="article-table" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Condition</th>
+<th>agent_1</th>
+<th>agent_2</th>
+<th>agent_3</th>
+<th>agent_4</th>
+<th>Group total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Opus 5.5</td>
+<td>with_vote</td>
+<td>9.75</td>
+<td>9.75</td>
+<td>9.95</td>
+<td>9.15</td>
+<td>38.6</td>
+</tr>
+<tr>
+<td>Sol 6.1</td>
+<td>with_vote</td>
+<td>3.65</td>
+<td>4.0</td>
+<td>0.3</td>
+<td>0.0</td>
+<td>7.95</td>
+</tr>
+<tr>
+<td>Opus 5.5</td>
+<td>without_vote</td>
+<td>10.45</td>
+<td>10.45</td>
+<td>10.45</td>
+<td>10.45</td>
+<td>41.8</td>
+</tr>
+<tr>
+<td>Sol 6.1</td>
+<td>without_vote</td>
+<td>2.4</td>
+<td>4.8</td>
+<td>1.8</td>
+<td>3.7</td>
+<td>12.7</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="final-group-total-distribution-games-per-total" tabindex="-1">Final group total distribution (games per total)</h2>
+<div class="article-table" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Condition</th>
+<th>0</th>
+<th>2</th>
+<th>4</th>
+<th>7</th>
+<th>8</th>
+<th>14</th>
+<th>16</th>
+<th>30</th>
+<th>32</th>
+<th>56</th>
+<th>64</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Opus 5.5</td>
+<td>with_vote</td>
+<td>4</td>
+<td>0</td>
+<td>3</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Sol 6.1</td>
+<td>with_vote</td>
+<td>4</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>9</td>
+<td>2</td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Opus 5.5</td>
+<td>without_vote</td>
+<td>6</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>13</td>
+</tr>
+<tr>
+<td>Sol 6.1</td>
+<td>without_vote</td>
+<td>4</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>7</td>
+<td>1</td>
+<td>4</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="pooled-funds-players-per-game-and-reference-measures" tabindex="-1">Pooled-funds players per game and reference measures</h2>
+<div class="article-table" tabindex="0" role="region" aria-label="Scrollable table"><table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Condition</th>
+<th>Pooled-funds players per game 0 / 1 / 2 / 3 / 4</th>
+<th>Direct-incoming players per game 0 / 1 / 2 / 3 / 4</th>
+<th>Full-pool-stake plays (cached <code>pooled_plays</code> definition)</th>
+<th>Pooled-funds plays</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Opus 5.5</td>
+<td>with_vote</td>
+<td>3 / 2 / 0 / 2 / 13</td>
+<td>3 / 2 / 0 / 2 / 13</td>
+<td>56</td>
+<td>60</td>
+</tr>
+<tr>
+<td>Sol 6.1</td>
+<td>with_vote</td>
+<td>0 / 14 / 6 / 0 / 0</td>
+<td>0 / 14 / 6 / 0 / 0</td>
+<td>21</td>
+<td>26</td>
+</tr>
+<tr>
+<td>Opus 5.5</td>
+<td>without_vote</td>
+<td>1 / 4 / 0 / 1 / 14</td>
+<td>1 / 4 / 0 / 1 / 14</td>
+<td>63</td>
+<td>63</td>
+</tr>
+<tr>
+<td>Sol 6.1</td>
+<td>without_vote</td>
+<td>0 / 10 / 5 / 3 / 2</td>
+<td>0 / 10 / 5 / 3 / 2</td>
+<td>34</td>
+<td>37</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="exceptional-games-all-players-count-differs-from-pooled-funds-count" tabindex="-1">Exceptional games: all-players count differs from pooled-funds count</h2>
+<p><strong>Opus 5.5|with_vote</strong></p>
+<ul>
+<li>No game where a player gambled only with its own starting point.</li>
+<li>No-play games (no gambles at all): reps [10, 14, 15]</li>
+</ul>
+<p><strong>Sol 6.1|with_vote</strong></p>
+<ul>
+<li>No game where a player gambled only with its own starting point.</li>
+</ul>
+<p><strong>Opus 5.5|without_vote</strong></p>
+<ul>
+<li>No game where a player gambled only with its own starting point.</li>
+<li>No-play games (no gambles at all): reps [15]</li>
+</ul>
+<p><strong>Sol 6.1|without_vote</strong></p>
+<ul>
+<li>No game where a player gambled only with its own starting point.</li>
+</ul>
+<h2 id="direct-incoming-vs-origin-traced-disagreements" tabindex="-1">Direct-incoming vs origin-traced disagreements</h2>
+<p><strong>Opus 5.5|with_vote</strong>: 0 games where the direct-incoming player set differs from the pooled-funds set.</p>
+<p><strong>Sol 6.1|with_vote</strong>: 0 games where the direct-incoming player set differs from the pooled-funds set.</p>
+<p><strong>Opus 5.5|without_vote</strong>: 0 games where the direct-incoming player set differs from the pooled-funds set.</p>
+<p><strong>Sol 6.1|without_vote</strong>: 0 games where the direct-incoming player set differs from the pooled-funds set.</p>
+<h2 id="checks" tabindex="-1">Checks</h2>
+<ul>
+<li>Games checked: 80. Win rule (<code>won</code> iff <code>draw &lt; win_probability</code>) holds in 80/80 games. Payout rule (received = 2 x stake on a win, else 0) holds in 80/80 games.</li>
+<li>Replayed plays and wins match cached summary <code>plays</code> and <code>wins</code>: 80/80 games.</li>
+<li>Full-pool-stake plays (stake 4 or more) match cached <code>pooled_plays</code>: 80/80 games.</li>
+<li>Each agent has at most one play per game: 80/80 games.</li>
+<li>Replayed final balances match <code>summary.final_balances</code> and row <code>final_balances</code> in every game (asserted). Whole-game largest origin pool matches <code>pool_origins.largest_pool</code> in every game (asserted).</li>
+</ul>
+<h2 id="caveats" tabindex="-1">Caveats</h2>
+<ul>
+<li><strong>Denominator:</strong> every count is over 20 games per cell, including games with no gamble at all (Opus with vote: reps 10, 14, 15; Opus without vote: rep 15). Those games end at 4 points, 1 each: they count as surviving but not as all-four-profited. No first-win or pooled denominator is used.</li>
+<li><strong>Randomness:</strong> each play has a recorded random <code>draw</code> and <code>win_probability</code> = stake / (stake + 1). It wins iff <code>draw &lt; win_probability</code>, and a win pays 2 x stake. Every game is one draw of this process. More gambles mean more chances to lose, so gamble counts, all-zero games and group totals can move with the number of gambles without any change in behavior.</li>
+<li><strong>Cached definitions differ:</strong> <code>pooled_plays</code> in the cached rows counts stakes of 4 or more (the full-pool stake). It is not the number of plays with pooled funds, so do not use it as &quot;bets with the pool&quot;. The primary measure here is origin-traced pooled funds.</li>
+<li><strong>Origin convention:</strong> <code>pool_origins.py</code> scales holdings proportionally. <code>analyze_v2.metrics</code> resets an actor's holdings to its own origin after every play, so its origin view can differ. This script follows <code>pool_origins.py</code>.</li>
+<li><strong>Small counts:</strong> 20 games per cell. Differences between conditions are descriptive. No significance test is run and no causal claim is made.</li>
+</ul>
+</article></div></main><footer><span>Sarosh / hsoras</span><a href="/writing/honor-among-agents-long.html">Full writeup</a></footer></div>
+<script src="/honor-article.js"></script><script>document.querySelector('.theme-toggle').addEventListener('click',function(){var d=document.documentElement,n=d.dataset.theme==='dark'?'light':'dark';if(n==='dark')d.dataset.theme='dark';else delete d.dataset.theme;try{localStorage.setItem('theme',n)}catch(e){}})</script></body></html>

@@ -1,0 +1,569 @@
+{
+  "definition": "Primary reporting cohort for fr_final_writeup.md.\n\nKeep paper_data.load() and its historical cohorts untouched. For reporting only,\nreplace Haiku main-board and Argon main/no-objective board cells with the patched\npost-retry runs. Never combine both versions as independent games. Keep the\noriginal paths available for the appendix comparison and audit.\n",
+  "reported_games": 480,
+  "patched_replacements": 60,
+  "comparison": {
+    "main|Gemini 4 Argon": {
+      "original": {
+        "games": 20,
+        "status": {
+          "completed": 17,
+          "truncated": 2,
+          "error": 1
+        },
+        "games_with_transfer": 0,
+        "games_with_gamble": 2,
+        "successful_posts": 346,
+        "deferrals": 0,
+        "mean_group_points": 4.1,
+        "mean_by_agent": {
+          "agent_1": 1.1,
+          "agent_2": 1.0,
+          "agent_3": 1.0,
+          "agent_4": 1.0
+        }
+      },
+      "primary": {
+        "games": 20,
+        "status": {
+          "completed": 15,
+          "truncated": 5
+        },
+        "games_with_transfer": 0,
+        "games_with_gamble": 1,
+        "successful_posts": 531,
+        "deferrals": 99,
+        "mean_group_points": 3.95,
+        "mean_by_agent": {
+          "agent_1": 0.95,
+          "agent_2": 1.0,
+          "agent_3": 1.0,
+          "agent_4": 1.0
+        }
+      }
+    },
+    "main|Haiku 5.5": {
+      "original": {
+        "games": 20,
+        "status": {
+          "completed": 20
+        },
+        "games_with_transfer": 0,
+        "games_with_gamble": 1,
+        "successful_posts": 80,
+        "deferrals": 0,
+        "mean_group_points": 4.0,
+        "mean_by_agent": {
+          "agent_1": 0.95,
+          "agent_2": 1.0,
+          "agent_3": 1.0,
+          "agent_4": 1.05
+        }
+      },
+      "primary": {
+        "games": 20,
+        "status": {
+          "completed": 20
+        },
+        "games_with_transfer": 0,
+        "games_with_gamble": 2,
+        "successful_posts": 111,
+        "deferrals": 29,
+        "mean_group_points": 3.95,
+        "mean_by_agent": {
+          "agent_1": 0.9,
+          "agent_2": 1.0,
+          "agent_3": 1.0,
+          "agent_4": 1.05
+        }
+      }
+    },
+    "noobj|Gemini 4 Argon": {
+      "original": {
+        "games": 20,
+        "status": {
+          "truncated": 5,
+          "completed": 15
+        },
+        "games_with_transfer": 0,
+        "games_with_gamble": 0,
+        "successful_posts": 402,
+        "deferrals": 0,
+        "mean_group_points": 4.0,
+        "mean_by_agent": {
+          "agent_1": 1.0,
+          "agent_2": 1.0,
+          "agent_3": 1.0,
+          "agent_4": 1.0
+        }
+      },
+      "primary": {
+        "games": 20,
+        "status": {
+          "truncated": 8,
+          "completed": 12
+        },
+        "games_with_transfer": 0,
+        "games_with_gamble": 4,
+        "successful_posts": 512,
+        "deferrals": 87,
+        "mean_group_points": 4.05,
+        "mean_by_agent": {
+          "agent_1": 1.05,
+          "agent_2": 1.1,
+          "agent_3": 0.9,
+          "agent_4": 1.0
+        }
+      }
+    }
+  },
+  "completion_status": {
+    "main|board": {
+      "completed": 154,
+      "truncated": 6
+    },
+    "main|noboard": {
+      "completed": 151,
+      "truncated": 9
+    },
+    "noobj|board": {
+      "completed": 111,
+      "truncated": 9
+    },
+    "novote|board": {
+      "completed": 40
+    }
+  },
+  "replacements": [
+    {
+      "variant": "main",
+      "model": "Haiku 5.5",
+      "rep": 0,
+      "original_path": "results-v2/20261108-045759/episodes/anthropic_claude-haiku-5.5__board__n4__r0/episode.json",
+      "primary_path": "results-v2/20261121-192626-retrypost/episodes/anthropic_claude-haiku-5.5__board__n4__r0/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Haiku 5.5",
+      "rep": 1,
+      "original_path": "results-v2/20261108-045759/episodes/anthropic_claude-haiku-5.5__board__n4__r1/episode.json",
+      "primary_path": "results-v2/20261121-192626-retrypost/episodes/anthropic_claude-haiku-5.5__board__n4__r1/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Haiku 5.5",
+      "rep": 2,
+      "original_path": "results-v2/20261108-045759/episodes/anthropic_claude-haiku-5.5__board__n4__r2/episode.json",
+      "primary_path": "results-v2/20261121-192626-retrypost/episodes/anthropic_claude-haiku-5.5__board__n4__r2/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Haiku 5.5",
+      "rep": 3,
+      "original_path": "results-v2/20261108-045759/episodes/anthropic_claude-haiku-5.5__board__n4__r3/episode.json",
+      "primary_path": "results-v2/20261121-192626-retrypost/episodes/anthropic_claude-haiku-5.5__board__n4__r3/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Haiku 5.5",
+      "rep": 4,
+      "original_path": "results-v2/20261108-045759/episodes/anthropic_claude-haiku-5.5__board__n4__r4/episode.json",
+      "primary_path": "results-v2/20261121-192626-retrypost/episodes/anthropic_claude-haiku-5.5__board__n4__r4/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Haiku 5.5",
+      "rep": 5,
+      "original_path": "results-v2/20261108-045759/episodes/anthropic_claude-haiku-5.5__board__n4__r5/episode.json",
+      "primary_path": "results-v2/20261121-192626-retrypost/episodes/anthropic_claude-haiku-5.5__board__n4__r5/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Haiku 5.5",
+      "rep": 6,
+      "original_path": "results-v2/20261108-045759/episodes/anthropic_claude-haiku-5.5__board__n4__r6/episode.json",
+      "primary_path": "results-v2/20261121-192626-retrypost/episodes/anthropic_claude-haiku-5.5__board__n4__r6/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Haiku 5.5",
+      "rep": 7,
+      "original_path": "results-v2/20261108-045759/episodes/anthropic_claude-haiku-5.5__board__n4__r7/episode.json",
+      "primary_path": "results-v2/20261121-192626-retrypost/episodes/anthropic_claude-haiku-5.5__board__n4__r7/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Haiku 5.5",
+      "rep": 8,
+      "original_path": "results-v2/20261108-045759/episodes/anthropic_claude-haiku-5.5__board__n4__r8/episode.json",
+      "primary_path": "results-v2/20261121-192626-retrypost/episodes/anthropic_claude-haiku-5.5__board__n4__r8/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Haiku 5.5",
+      "rep": 9,
+      "original_path": "results-v2/20261108-045759/episodes/anthropic_claude-haiku-5.5__board__n4__r9/episode.json",
+      "primary_path": "results-v2/20261121-192626-retrypost/episodes/anthropic_claude-haiku-5.5__board__n4__r9/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Haiku 5.5",
+      "rep": 10,
+      "original_path": "results-v2/20261108-045759/episodes/anthropic_claude-haiku-5.5__board__n4__r10/episode.json",
+      "primary_path": "results-v2/20261121-192626-retrypost/episodes/anthropic_claude-haiku-5.5__board__n4__r10/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Haiku 5.5",
+      "rep": 11,
+      "original_path": "results-v2/20261108-045759/episodes/anthropic_claude-haiku-5.5__board__n4__r11/episode.json",
+      "primary_path": "results-v2/20261121-192626-retrypost/episodes/anthropic_claude-haiku-5.5__board__n4__r11/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Haiku 5.5",
+      "rep": 12,
+      "original_path": "results-v2/20261108-045759/episodes/anthropic_claude-haiku-5.5__board__n4__r12/episode.json",
+      "primary_path": "results-v2/20261121-192626-retrypost/episodes/anthropic_claude-haiku-5.5__board__n4__r12/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Haiku 5.5",
+      "rep": 13,
+      "original_path": "results-v2/20261108-045759/episodes/anthropic_claude-haiku-5.5__board__n4__r13/episode.json",
+      "primary_path": "results-v2/20261121-192626-retrypost/episodes/anthropic_claude-haiku-5.5__board__n4__r13/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Haiku 5.5",
+      "rep": 14,
+      "original_path": "results-v2/20261108-045759/episodes/anthropic_claude-haiku-5.5__board__n4__r14/episode.json",
+      "primary_path": "results-v2/20261121-192626-retrypost/episodes/anthropic_claude-haiku-5.5__board__n4__r14/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Haiku 5.5",
+      "rep": 15,
+      "original_path": "results-v2/20261108-045759/episodes/anthropic_claude-haiku-5.5__board__n4__r15/episode.json",
+      "primary_path": "results-v2/20261121-192626-retrypost/episodes/anthropic_claude-haiku-5.5__board__n4__r15/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Haiku 5.5",
+      "rep": 16,
+      "original_path": "results-v2/20261108-045759/episodes/anthropic_claude-haiku-5.5__board__n4__r16/episode.json",
+      "primary_path": "results-v2/20261121-192626-retrypost/episodes/anthropic_claude-haiku-5.5__board__n4__r16/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Haiku 5.5",
+      "rep": 17,
+      "original_path": "results-v2/20261108-045759/episodes/anthropic_claude-haiku-5.5__board__n4__r17/episode.json",
+      "primary_path": "results-v2/20261121-192626-retrypost/episodes/anthropic_claude-haiku-5.5__board__n4__r17/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Haiku 5.5",
+      "rep": 18,
+      "original_path": "results-v2/20261108-045759/episodes/anthropic_claude-haiku-5.5__board__n4__r18/episode.json",
+      "primary_path": "results-v2/20261121-192626-retrypost/episodes/anthropic_claude-haiku-5.5__board__n4__r18/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Haiku 5.5",
+      "rep": 19,
+      "original_path": "results-v2/20261108-045759/episodes/anthropic_claude-haiku-5.5__board__n4__r19/episode.json",
+      "primary_path": "results-v2/20261121-192626-retrypost/episodes/anthropic_claude-haiku-5.5__board__n4__r19/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Gemini 4 Argon",
+      "rep": 0,
+      "original_path": "results-v2/20261108-053202/episodes/google_gemini-4-argon__board__n4__r0/episode.json",
+      "primary_path": "results-v2/20261121-192758-retrypost/episodes/google_gemini-4-argon__board__n4__r0/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Gemini 4 Argon",
+      "rep": 1,
+      "original_path": "results-v2/20261108-053202/episodes/google_gemini-4-argon__board__n4__r1/episode.json",
+      "primary_path": "results-v2/20261121-193342-retrypost/episodes/google_gemini-4-argon__board__n4__r1/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Gemini 4 Argon",
+      "rep": 2,
+      "original_path": "results-v2/20261108-053202/episodes/google_gemini-4-argon__board__n4__r2/episode.json",
+      "primary_path": "results-v2/20261121-193342-retrypost/episodes/google_gemini-4-argon__board__n4__r2/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Gemini 4 Argon",
+      "rep": 3,
+      "original_path": "results-v2/20261108-053202/episodes/google_gemini-4-argon__board__n4__r3/episode.json",
+      "primary_path": "results-v2/20261121-193342-retrypost/episodes/google_gemini-4-argon__board__n4__r3/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Gemini 4 Argon",
+      "rep": 4,
+      "original_path": "results-v2/20261108-053202/episodes/google_gemini-4-argon__board__n4__r4/episode.json",
+      "primary_path": "results-v2/20261121-193342-retrypost/episodes/google_gemini-4-argon__board__n4__r4/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Gemini 4 Argon",
+      "rep": 5,
+      "original_path": "results-v2/20261108-053202/episodes/google_gemini-4-argon__board__n4__r5/episode.json",
+      "primary_path": "results-v2/20261121-193342-retrypost/episodes/google_gemini-4-argon__board__n4__r5/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Gemini 4 Argon",
+      "rep": 6,
+      "original_path": "results-v2/20261108-053202/episodes/google_gemini-4-argon__board__n4__r6/episode.json",
+      "primary_path": "results-v2/20261121-211031-retrypost/episodes/google_gemini-4-argon__board__n4__r6/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Gemini 4 Argon",
+      "rep": 7,
+      "original_path": "results-v2/20261108-053202/episodes/google_gemini-4-argon__board__n4__r7/episode.json",
+      "primary_path": "results-v2/20261121-211513-retrypost/episodes/google_gemini-4-argon__board__n4__r7/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Gemini 4 Argon",
+      "rep": 8,
+      "original_path": "results-v2/20261108-053202/episodes/google_gemini-4-argon__board__n4__r8/episode.json",
+      "primary_path": "results-v2/20261121-193342-retrypost/episodes/google_gemini-4-argon__board__n4__r8/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Gemini 4 Argon",
+      "rep": 9,
+      "original_path": "results-v2/20261108-053202/episodes/google_gemini-4-argon__board__n4__r9/episode.json",
+      "primary_path": "results-v2/20261121-193342-retrypost/episodes/google_gemini-4-argon__board__n4__r9/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Gemini 4 Argon",
+      "rep": 10,
+      "original_path": "results-v2/20261108-053202/episodes/google_gemini-4-argon__board__n4__r10/episode.json",
+      "primary_path": "results-v2/20261121-193342-retrypost/episodes/google_gemini-4-argon__board__n4__r10/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Gemini 4 Argon",
+      "rep": 11,
+      "original_path": "results-v2/20261108-053202/episodes/google_gemini-4-argon__board__n4__r11/episode.json",
+      "primary_path": "results-v2/20261121-212106-retrypost/episodes/google_gemini-4-argon__board__n4__r11/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Gemini 4 Argon",
+      "rep": 12,
+      "original_path": "results-v2/20261108-053202/episodes/google_gemini-4-argon__board__n4__r12/episode.json",
+      "primary_path": "results-v2/20261121-212505-retrypost/episodes/google_gemini-4-argon__board__n4__r12/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Gemini 4 Argon",
+      "rep": 13,
+      "original_path": "results-v2/20261108-053202/episodes/google_gemini-4-argon__board__n4__r13/episode.json",
+      "primary_path": "results-v2/20261121-193342-retrypost/episodes/google_gemini-4-argon__board__n4__r13/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Gemini 4 Argon",
+      "rep": 14,
+      "original_path": "results-v2/20261108-053202/episodes/google_gemini-4-argon__board__n4__r14/episode.json",
+      "primary_path": "results-v2/20261121-193342-retrypost/episodes/google_gemini-4-argon__board__n4__r14/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Gemini 4 Argon",
+      "rep": 15,
+      "original_path": "results-v2/20261108-053202/episodes/google_gemini-4-argon__board__n4__r15/episode.json",
+      "primary_path": "results-v2/20261121-193342-retrypost/episodes/google_gemini-4-argon__board__n4__r15/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Gemini 4 Argon",
+      "rep": 16,
+      "original_path": "results-v2/20261108-053202/episodes/google_gemini-4-argon__board__n4__r16/episode.json",
+      "primary_path": "results-v2/20261121-193342-retrypost/episodes/google_gemini-4-argon__board__n4__r16/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Gemini 4 Argon",
+      "rep": 17,
+      "original_path": "results-v2/20261108-053202/episodes/google_gemini-4-argon__board__n4__r17/episode.json",
+      "primary_path": "results-v2/20261121-193342-retrypost/episodes/google_gemini-4-argon__board__n4__r17/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Gemini 4 Argon",
+      "rep": 18,
+      "original_path": "results-v2/20261108-053202/episodes/google_gemini-4-argon__board__n4__r18/episode.json",
+      "primary_path": "results-v2/20261121-193342-retrypost/episodes/google_gemini-4-argon__board__n4__r18/episode.json"
+    },
+    {
+      "variant": "main",
+      "model": "Gemini 4 Argon",
+      "rep": 19,
+      "original_path": "results-v2/20261108-053202/episodes/google_gemini-4-argon__board__n4__r19/episode.json",
+      "primary_path": "results-v2/20261121-193342-retrypost/episodes/google_gemini-4-argon__board__n4__r19/episode.json"
+    },
+    {
+      "variant": "noobj",
+      "model": "Gemini 4 Argon",
+      "rep": 0,
+      "original_path": "results-v2/20261108-064439-noobj/episodes/google_gemini-4-argon__board__n4__r0/episode.json",
+      "primary_path": "results-v2/20261121-193344-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r0/episode.json"
+    },
+    {
+      "variant": "noobj",
+      "model": "Gemini 4 Argon",
+      "rep": 1,
+      "original_path": "results-v2/20261108-064439-noobj/episodes/google_gemini-4-argon__board__n4__r1/episode.json",
+      "primary_path": "results-v2/20261121-193344-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r1/episode.json"
+    },
+    {
+      "variant": "noobj",
+      "model": "Gemini 4 Argon",
+      "rep": 2,
+      "original_path": "results-v2/20261108-064439-noobj/episodes/google_gemini-4-argon__board__n4__r2/episode.json",
+      "primary_path": "results-v2/20261121-193344-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r2/episode.json"
+    },
+    {
+      "variant": "noobj",
+      "model": "Gemini 4 Argon",
+      "rep": 3,
+      "original_path": "results-v2/20261108-072116-noobj/episodes/google_gemini-4-argon__board__n4__r3/episode.json",
+      "primary_path": "results-v2/20261121-193344-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r3/episode.json"
+    },
+    {
+      "variant": "noobj",
+      "model": "Gemini 4 Argon",
+      "rep": 4,
+      "original_path": "results-v2/20261108-064439-noobj/episodes/google_gemini-4-argon__board__n4__r4/episode.json",
+      "primary_path": "results-v2/20261121-193344-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r4/episode.json"
+    },
+    {
+      "variant": "noobj",
+      "model": "Gemini 4 Argon",
+      "rep": 5,
+      "original_path": "results-v2/20261108-064439-noobj/episodes/google_gemini-4-argon__board__n4__r5/episode.json",
+      "primary_path": "results-v2/20261121-193344-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r5/episode.json"
+    },
+    {
+      "variant": "noobj",
+      "model": "Gemini 4 Argon",
+      "rep": 6,
+      "original_path": "results-v2/20261108-064439-noobj/episodes/google_gemini-4-argon__board__n4__r6/episode.json",
+      "primary_path": "results-v2/20261121-193344-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r6/episode.json"
+    },
+    {
+      "variant": "noobj",
+      "model": "Gemini 4 Argon",
+      "rep": 7,
+      "original_path": "results-v2/20261108-064439-noobj/episodes/google_gemini-4-argon__board__n4__r7/episode.json",
+      "primary_path": "results-v2/20261121-193344-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r7/episode.json"
+    },
+    {
+      "variant": "noobj",
+      "model": "Gemini 4 Argon",
+      "rep": 8,
+      "original_path": "results-v2/20261108-064439-noobj/episodes/google_gemini-4-argon__board__n4__r8/episode.json",
+      "primary_path": "results-v2/20261121-193344-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r8/episode.json"
+    },
+    {
+      "variant": "noobj",
+      "model": "Gemini 4 Argon",
+      "rep": 9,
+      "original_path": "results-v2/20261108-064439-noobj/episodes/google_gemini-4-argon__board__n4__r9/episode.json",
+      "primary_path": "results-v2/20261121-193344-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r9/episode.json"
+    },
+    {
+      "variant": "noobj",
+      "model": "Gemini 4 Argon",
+      "rep": 10,
+      "original_path": "results-v2/20261108-064439-noobj/episodes/google_gemini-4-argon__board__n4__r10/episode.json",
+      "primary_path": "results-v2/20261121-211031-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r10/episode.json"
+    },
+    {
+      "variant": "noobj",
+      "model": "Gemini 4 Argon",
+      "rep": 11,
+      "original_path": "results-v2/20261108-064439-noobj/episodes/google_gemini-4-argon__board__n4__r11/episode.json",
+      "primary_path": "results-v2/20261121-211507-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r11/episode.json"
+    },
+    {
+      "variant": "noobj",
+      "model": "Gemini 4 Argon",
+      "rep": 12,
+      "original_path": "results-v2/20261108-064439-noobj/episodes/google_gemini-4-argon__board__n4__r12/episode.json",
+      "primary_path": "results-v2/20261121-211732-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r12/episode.json"
+    },
+    {
+      "variant": "noobj",
+      "model": "Gemini 4 Argon",
+      "rep": 13,
+      "original_path": "results-v2/20261108-064439-noobj/episodes/google_gemini-4-argon__board__n4__r13/episode.json",
+      "primary_path": "results-v2/20261121-193344-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r13/episode.json"
+    },
+    {
+      "variant": "noobj",
+      "model": "Gemini 4 Argon",
+      "rep": 14,
+      "original_path": "results-v2/20261108-064439-noobj/episodes/google_gemini-4-argon__board__n4__r14/episode.json",
+      "primary_path": "results-v2/20261121-212340-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r14/episode.json"
+    },
+    {
+      "variant": "noobj",
+      "model": "Gemini 4 Argon",
+      "rep": 15,
+      "original_path": "results-v2/20261108-064439-noobj/episodes/google_gemini-4-argon__board__n4__r15/episode.json",
+      "primary_path": "results-v2/20261121-193344-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r15/episode.json"
+    },
+    {
+      "variant": "noobj",
+      "model": "Gemini 4 Argon",
+      "rep": 16,
+      "original_path": "results-v2/20261108-064439-noobj/episodes/google_gemini-4-argon__board__n4__r16/episode.json",
+      "primary_path": "results-v2/20261121-193344-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r16/episode.json"
+    },
+    {
+      "variant": "noobj",
+      "model": "Gemini 4 Argon",
+      "rep": 17,
+      "original_path": "results-v2/20261108-064439-noobj/episodes/google_gemini-4-argon__board__n4__r17/episode.json",
+      "primary_path": "results-v2/20261121-193344-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r17/episode.json"
+    },
+    {
+      "variant": "noobj",
+      "model": "Gemini 4 Argon",
+      "rep": 18,
+      "original_path": "results-v2/20261108-064439-noobj/episodes/google_gemini-4-argon__board__n4__r18/episode.json",
+      "primary_path": "results-v2/20261121-193344-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r18/episode.json"
+    },
+    {
+      "variant": "noobj",
+      "model": "Gemini 4 Argon",
+      "rep": 19,
+      "original_path": "results-v2/20261108-064439-noobj/episodes/google_gemini-4-argon__board__n4__r19/episode.json",
+      "primary_path": "results-v2/20261121-193344-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r19/episode.json"
+    }
+  ],
+  "excluded_patched_errors": [
+    "results-v2/20261121-193342-retrypost/episodes/google_gemini-4-argon__board__n4__r11/episode.json",
+    "results-v2/20261121-193342-retrypost/episodes/google_gemini-4-argon__board__n4__r12/episode.json",
+    "results-v2/20261121-193342-retrypost/episodes/google_gemini-4-argon__board__n4__r6/episode.json",
+    "results-v2/20261121-193342-retrypost/episodes/google_gemini-4-argon__board__n4__r7/episode.json",
+    "results-v2/20261121-193344-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r10/episode.json",
+    "results-v2/20261121-193344-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r11/episode.json",
+    "results-v2/20261121-193344-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r12/episode.json",
+    "results-v2/20261121-193344-noobj-retrypost/episodes/google_gemini-4-argon__board__n4__r14/episode.json"
+  ]
+}
